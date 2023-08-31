@@ -21,10 +21,15 @@ a:hover {
 a:active {
     color: blue;
 }
- 
+
+.poeta {
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 .circular_image {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
 }
 
