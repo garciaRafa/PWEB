@@ -1,0 +1,29 @@
+/* Estilo para o cabeçalho da tabela */
+th {
+    background-color: purple; /* Altere para a cor desejada */
+    color: white;
+    padding: 10px;
+}
+
+/* Estilo para as células de dados da tabela */
+td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Estilo para links nas células */
+td a:link {
+    color: blueviolet;
+}
+
+td a:visited {
+    color: darkblue;
+}
+
+td a:hover {
+    color: deeppink;
+}
+
+td a:active {
+    color: red;
+}
