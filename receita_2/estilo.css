@@ -1,0 +1,30 @@
+p.verso{
+    color: blue;
+}
+
+p.mote{
+    color: red;
+}
+
+a:link {
+    color: red;
+} 
+
+a:visited {
+    color: green;
+}  
+
+a:hover {
+    color: hotpink;
+}
+  
+a:active {
+    color: blue;
+}
+ 
+.circular_image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
