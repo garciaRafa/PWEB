@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        
+        table, th, td {
+            border: 1px solid black;
+        }
+        
+        th {
+            background-color: orange;
+            color: white;
+        }
+        
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="botaoDiv">
+        <button id="botaoCarregar">Carregar cervejas...</button>
+        <button id="botaoOrdenar">Ordenar Cervejas</button>
+        <button id="botaoEmbaralhar">Embaralhar Cervejas</button>
+        <table id="cervejasTable">
+            <thead>
+                <tr>
+                    <th>Cervejas</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    let cervejas = ["Itaipava", "Petra", "Crystal"];
+
+    function criarLinhaTabela(item) {
+        return `<tr><td>${item}</td></tr>`;
+    }
+
+    function carregarTabela() {
+        let tabela = document.getElementById("cervejasTable");
+        let tbody = tabela.querySelector("tbody");
+        let cervejasHtml = cervejas.map(criarLinhaTabela);
+        tbody.innerHTML = cervejasHtml.join("\n");
+    }
+
+    function ordenarCervejas() {
+        cervejas.sort();
+        carregarTabela(); 
+    }
+
+    function embaralharCervejas() {
+        function comparacaoAleatoria() {
+            return Math.random() - 0.5;
+        }
+
+        cervejas.sort(comparacaoAleatoria);
+        carregarTabela();
+    }
+
+    let botaoCarregar = document.getElementById("botaoCarregar");
+    botaoCarregar.addEventListener("click", carregarTabela);
+
+    let botaoOrdenar = document.getElementById("botaoOrdenar");
+    botaoOrdenar.addEventListener("click", ordenarCervejas);
+
+    let botaoEmbaralhar = document.getElementById("botaoEmbaralhar");
+    botaoEmbaralhar.addEventListener("click", embaralharCervejas);
+</script>
+</html>
