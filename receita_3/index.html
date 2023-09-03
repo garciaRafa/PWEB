@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #cervejaDiv {
+            opacity: 0; 
+            transition: opacity 0.5s; 
+        }
+    </style>
+</head>
+<body>
+    <div id="botaoDiv"><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div id="cervejaDiv"></div>
+</body>
+<script>
+    let botao = document.getElementById("botaoCarregar")
+    let cervejaDiv = document.getElementById("cervejaDiv")
+    let exibindoCerveja = false
+    function carregarDiv() {
+        if(!exibindoCerveja) {
+            cervejaDiv.style.opacity = 1
+            cervejaDiv.innerHTML = '<h1>Itaipava<\h1>'
+            exibindoCerveja = true
+            botao.innerText = "Apagar cervejas"
+        }
+        else {
+            cervejaDiv.style.opacity = 0
+            setTimeout(() => {
+                cervejaDiv.innerHTML = ""
+                exibindoCerveja = false
+                botao.innerText = "Carregar cervejas..."
+            }, 500)
+        }
+    }
+    botao.addEventListener("click", carregarDiv)
+</script>
+</html>
