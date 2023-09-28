@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>   
+   <head>
+        <meta charset="UTF-8">
+        <style>
+            #cervejasTable,
+            #veiculosTable {
+                border-collapse: collapse;
+                width: 80%;
+                margin: 20px auto;
+            }
+    
+            #cervejasTable th,
+            #cervejasTable td,
+            #veiculosTable th,
+            #veiculosTable td {
+                border: 1px solid white;
+                padding: 10px;
+                text-align: left;
+            }
+    
+            #cervejasTable th,
+            #veiculosTable th {
+                background-color: #6a0dad;
+            }
+    
+            #cervejasTable th,
+            #cervejasTable td,
+            #veiculosTable th,
+            #veiculosTable td {
+                color: white;
+            }
+    
+            #cervejasTable tr:nth-child(even),
+            #veiculosTable tr:nth-child(even) {
+                background-color: #4d0985;
+            }
+    
+            #cervejasTable tr:nth-child(odd),
+            #veiculosTable tr:nth-child(odd) {
+                background-color: #710fb7;
+            }
+    
+            button {
+                background-color: purple;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
+    
+            button:hover {
+                background-color: #4d0985;
+            }
+    
+            div {
+                margin: 10px 0;
+            }
+        </style>     
+   </head>
+   <body>
+        <div>
+            <button id="botaoCarregarCervejas">Carregando cervejas...</button>
+            <button id="botaoCarregarVeiculos">Carregando Veículos...</button>
+        </div>
+
+        <table id="cervejasTable">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Nome</th>
+                    <th>Teor Alcoólico</th>
+                    <th>IBU</th>
+                    <th>Maltes</th>
+                </tr>
+            </thead>
+            <tbody id="cervejasBody"></tbody>
+        </table>
+        <table id="veiculosTable">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Cor</th>
+                    <th>Transmissão</th>
+                    <th>Tipo de Combustível</th>
+                    <th>Tipo de Carro</th>
+                </tr>
+            </thead>
+            <tbody id="veiculosBody"></tbody>
+        </table>
+    <script>
+        let cervejas = [];
+        let veiculos = [];
+
+        const carregarCervejas = async () => {
+            try {
+                let res = await fetch("https://random-data-api.com/api/v2/beers?size=5");
+                cervejas = await res.json();
+                carregarDiv(cervejas, "cervejasBody", ["brand", "name", "ibu", "alcohol", "malts"]);
+            } catch (err) {
+                document.getElementById("cervejasTable").innerHTML = "Fudeu";
+            }
+        }
+
+        const carregarVeiculos = async () => {
+            try {
+                let res = await fetch("https://random-data-api.com/api/vehicle/random_vehicle?size=5");
+                veiculos = await res.json();
+                carregarDiv(veiculos, "veiculosBody", ["make_and_model", "color", "transmission", "fuel_type", "car_type"]);
+            } catch (err) {
+                document.getElementById("veiculosTable").innerHTML = "Fudeu";
+            }
+        }
+
+        const carregarDiv = (data, tbodyId, properties) => {
+            const tbody = document.getElementById(tbodyId);
+            const rowsHtml = data.map(item => {
+                const values = properties.map(prop => item[prop]);
+                return "<tr>" + values.map(value => `<td>${value}</td>`).join("") + "</tr>";
+            });
+            tbody.innerHTML = rowsHtml.join("\n");
+        }
+
+        let botaoCervejas = document.getElementById("botaoCarregarCervejas");
+        botaoCervejas.addEventListener("click", carregarCervejas);
+
+        let botaoVeiculos = document.getElementById("botaoCarregarVeiculos");
+        botaoVeiculos.addEventListener("click", carregarVeiculos);
+    </script>
+</body>
+</html>
