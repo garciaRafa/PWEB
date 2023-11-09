@@ -1,0 +1,10 @@
+table, th, td{
+    background-color: purple;
+    border: 1px solid black;
+    margin: 0 auto;
+    color: white;
+}
+
+#h1-text{
+    text-align: left;
+}
