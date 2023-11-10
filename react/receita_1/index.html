@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>React Um</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+  <script src="libs/react.js"></script>
+  <script src="libs/react-dom.js"></script>
+  <script src="libs/babel.js"></script>
+  <script type="text/babel">
+    
+    const cachacas = [
+      { nome: "Trappistes Rochefort 10", estilo: "Dark Lager" },
+      { nome: "Delirium Tremens", estilo: "Leblon Cachaça" },
+      { nome: "Hercules Double IPA", estilo: "German Wheat And Rye Beer" }
+    ];
+
+    function renderizarTabela() {
+      ReactDOM.render(
+        <div id="app">
+          <h1>Minha tabela de bebidas</h1>
+          <table id="tabela" border="1">
+            <thead>
+              <tr><th>Nome</th><th>Estilo</th></tr>
+            </thead>
+            <tbody>
+              {cachacas.map((cachaca, index) => (
+                <tr key={index}><td>{cachaca.nome}</td><td>{cachaca.estilo}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>,
+        document.getElementById("app")
+      );
+    }
+
+    function renderizarBotao() {
+      ReactDOM.render(
+        <button onClick={renderizarTabela}>Mostrar Tabela</button>,
+        document.getElementById("app")
+      );
+    }
+
+    renderizarBotao();
+  </script>
+</body>
+
+</html>
