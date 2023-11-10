@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>React Dois</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  
+  <div id="tabela_bebidas"></div>
+  <div id="tabela_times"></div>
+
+
+  <script src="libs/react.js"></script>
+  <script src="libs/react-dom.js"></script>
+  <script src="libs/babel.js"></script>
+  <script type="text/babel">
+    
+    const cachacas = [
+      { nome: "Trappistes Rochefort 10", estilo: "Dark Lager" },
+      { nome: "Delirium Tremens", estilo: "Leblon Cachaça" },
+      { nome: "Hercules Double IPA", estilo: "German Wheat And Rye Beer" }
+    ];
+
+    const time = [
+      { nome: "Flamengo", pais: "Brasil"},
+      { nome: "Barcelona", pais: "Espanha"},
+      { nome: "Ajax", pais: "Holanda"}
+    ];
+
+    class TabelaBebidas extends React.Component{
+      render(){
+        return(
+          <div id="tabela_bebidas">
+            <h1>Minha tabela de bebidas</h1>
+            <table id="bebidas" border="1">
+              <thead>
+                <tr><th>Nome</th><th>Estilo</th></tr>
+              </thead>
+              <tbody>
+                {cachacas.map((cachaca, index) => (
+                  <tr key={index}><td>{cachaca.nome}</td><td>{cachaca.estilo}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
+      }
+    }
+
+    const TabelaBebidas__ = () => {
+      return(
+          <div>
+            <h1>Minha tabela de bebidas</h1>
+            <table id="bebidas" border="1">
+              <thead>
+                <tr><th>Nome</th><th>Estilo</th></tr>
+              </thead>
+              <tbody>
+                {cachacas.map((cachaca, index) => (
+                  <tr key={index}><td>{cachaca.nome}</td><td>{cachaca.estilo}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
+    }
+
+    class TabelaTimes extends React.Component{
+      render(){
+        return(
+          <div id="tabela_times">
+            <h1>Minha tabela de times</h1>
+            <table id="times" border="1">
+              <thead>
+                <tr><th>Nome</th><th>País</th></tr>
+              </thead>
+              <tbody>
+                {time.map((time, index) => (
+                  <tr key={index}><td>{time.nome}</td><td>{time.pais}</td></tr>
+                ))}  
+              </tbody>
+            </table>
+          </div>
+        )
+      }
+    }
+
+    const TabelaTimes__ = () => {
+      return(
+        <div>
+          <h1>Minha tabela de times</h1>
+          <table id="times" border="1">
+            <thead>
+              <tr><th>Nome</th><th>País</th></tr>
+            </thead>
+            <tbody>
+              {time.map((time, index) => (
+                <tr key={index}><td>{time.nome}</td><td>{time.pais}</td></tr>
+              ))}  
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+
+    ReactDOM.render(
+      <TabelaBebidas/>,
+      document.getElementById("tabela_bebidas")
+    );
+
+    ReactDOM.render(
+      <TabelaTimes/>,
+      document.getElementById("tabela_times")
+    );
+
+  </script>
+</body>
+
+</html>
